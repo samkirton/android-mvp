@@ -4,7 +4,7 @@ import android.content.Context;
 
 public interface PresenterView {
 
-    Context getContext();
+    Context context();
 
     void startProgress();
 

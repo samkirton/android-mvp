@@ -1,7 +1,8 @@
-package com.memtrip.defacto.seventeen.presenter.app;
+package com.memtrip.defacto.seventeen.presenter.app.ui;
 
 import android.app.Application;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.memtrip.defacto.seventeen.presenter.app.weather.DaggerWeatherComponent;
 import com.memtrip.defacto.seventeen.repository.RepositoryModule;
 import com.memtrip.defacto.seventeen.system.SystemModule;
@@ -13,6 +14,8 @@ public class DefaultApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        AndroidThreeTen.init(this);
     }
 
     @Override

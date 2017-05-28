@@ -1,29 +1,19 @@
-package com.memtrip.defacto.seventeen.repository.api;
+package com.memtrip.defacto.seventeen.repository.api.converter;
 
-import com.memtrip.defacto.seventeen.system.Converter;
+import com.memtrip.defacto.seventeen.repository.api.model.OpenWeather;
+import com.memtrip.defacto.seventeen.repository.api.model.OpenWeatherWeather;
+import com.memtrip.defacto.seventeen.system.ConvertTo;
 import com.memtrip.defacto.seventeen.system.entity.Day;
 import com.memtrip.defacto.seventeen.system.entity.Description;
 import com.memtrip.defacto.seventeen.system.entity.Temperature;
 import com.memtrip.defacto.seventeen.system.entity.Weather;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class WeatherConverter implements Converter<OpenWeatherRoot, List<Weather>> {
+public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
 
     @Override
-    public List<Weather> intoPresenter(OpenWeatherRoot openWeatherRoot) {
-
-        List<Weather> weatherList = new ArrayList<>();
-
-        for (OpenWeather openWeather : openWeatherRoot.getList()) {
-            weatherList.add(getWeather(openWeather));
-        }
-
-        return weatherList;
-    }
-
-    private Weather getWeather(OpenWeather openWeather) {
+    public Weather from(OpenWeather openWeather) {
         return new Weather(
                 new Day(
                         openWeather.getDt()

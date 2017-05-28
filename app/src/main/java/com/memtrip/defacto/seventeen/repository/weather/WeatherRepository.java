@@ -1,10 +1,9 @@
 package com.memtrip.defacto.seventeen.repository.weather;
 
-import com.memtrip.defacto.seventeen.repository.api.OpenWeather;
-import com.memtrip.defacto.seventeen.repository.api.OpenWeatherRoot;
-import com.memtrip.defacto.seventeen.repository.api.WeatherApi;
-import com.memtrip.defacto.seventeen.system.Converter;
-import com.memtrip.defacto.seventeen.system.entity.Weather;
+import com.memtrip.defacto.seventeen.repository.api.ForecastApi;
+import com.memtrip.defacto.seventeen.repository.api.model.OpenWeatherForecast;
+import com.memtrip.defacto.seventeen.system.ConvertTo;
+import com.memtrip.defacto.seventeen.system.entity.Forecast;
 
 import java.util.List;
 
@@ -16,30 +15,30 @@ import io.reactivex.functions.Function;
 
 public class WeatherRepository {
 
-    private final WeatherApi weatherApi;
-    private final Converter<OpenWeatherRoot, List<Weather>> converter;
+    private final ForecastApi weatherApi;
+    private final ConvertTo<OpenWeatherForecast, List<Forecast>> convertTo;
     private final String apiKey;
     private final String apiLocation;
 
     public WeatherRepository(String apiKey,
                              String apiLocation,
-                             WeatherApi weatherApi,
-                             Converter<OpenWeatherRoot, List<Weather>> converter) {
+                             ForecastApi weatherApi,
+                             ConvertTo<OpenWeatherForecast, List<Forecast>> convertTo) {
 
         this.apiKey = apiKey;
         this.apiLocation = apiLocation;
         this.weatherApi = weatherApi;
-        this.converter = converter;
+        this.convertTo = convertTo;
     }
 
-    public Single<List<Weather>> getWeather() {
-        return weatherApi.getWeather(apiKey, apiLocation).flatMap(new Function<OpenWeatherRoot, SingleSource<List<Weather>>>() {
+    public Single<List<Forecast>> getForecast() {
+        return weatherApi.getForecast(apiKey, apiLocation).flatMap(new Function<OpenWeatherForecast, SingleSource<List<Forecast>>>() {
             @Override
-            public Single<List<Weather>> apply(@NonNull final OpenWeatherRoot openWeatherRoot) {
-                return new Single<List<Weather>>() {
+            public Single<List<Forecast>> apply(@NonNull final OpenWeatherForecast openWeatherForecast) {
+                return new Single<List<Forecast>>() {
                     @Override
-                    protected void subscribeActual(@NonNull SingleObserver<? super List<Weather>> observer) {
-                        observer.onSuccess(converter.intoPresenter(openWeatherRoot));
+                    protected void subscribeActual(@NonNull SingleObserver<? super List<Forecast>> observer) {
+                        observer.onSuccess(convertTo.from(openWeatherForecast));
                     }
                 };
             }

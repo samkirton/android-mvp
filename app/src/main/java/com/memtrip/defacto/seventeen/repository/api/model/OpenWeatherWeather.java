@@ -1,6 +1,6 @@
-package com.memtrip.defacto.seventeen.repository.api;
+package com.memtrip.defacto.seventeen.repository.api.model;
 
-class OpenWeatherWeather {
+public class OpenWeatherWeather {
     private String main;
     private String description;
     private String icon;

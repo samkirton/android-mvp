@@ -3,21 +3,26 @@ package com.memtrip.defacto.seventeen.presenter;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 
-import com.memtrip.defacto.seventeen.presenter.app.DefaultActivity;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.memtrip.defacto.seventeen.presenter.app.ui.Click;
+import com.memtrip.defacto.seventeen.presenter.app.ui.DefaultActivity;
+import com.memtrip.defacto.seventeen.presenter.app.ui.DefaultClick;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.functions.Function;
 
 public abstract class PresenterActivity<P extends Presenter, C extends PresenterComponent> extends DefaultActivity
     implements PresenterView {
 
     private P presenter;
 
-    public P presenter() {
-        return presenter;
-    }
-
     @SuppressWarnings("unchecked")
     public C injector(String service) {
-        return (C) getContext()
+        return (C) context()
                 .getApplicationContext()
                 .getSystemService(service);
     }
@@ -27,6 +32,11 @@ public abstract class PresenterActivity<P extends Presenter, C extends Presenter
         super.onCreate(savedInstanceState);
 
         presenter = createPresenter();
+
+        if (presenter == null) {
+            throw new IllegalStateException("Derivatives of PresenterActivity must provided a " +
+                    "Presenter instance via the createPresenter() abstract method.");
+        }
     }
 
     @Override
@@ -54,8 +64,23 @@ public abstract class PresenterActivity<P extends Presenter, C extends Presenter
     }
 
     @Override
-    public Context getContext() {
+    public Context context() {
         return this;
+    }
+
+    protected void registerClicks(final View view) {
+        RxView.clicks(view)
+                .flatMap(new Function<Object, ObservableSource<Click>>() {
+                    @Override
+                    public ObservableSource<Click> apply(Object o) {
+                        return new ObservableSource<Click>() {
+                            @Override
+                            public void subscribe(Observer<? super Click> observer) {
+                                observer.onNext(new DefaultClick(view.getId()));
+                            }
+                        };
+                    }
+                }).subscribe(presenter.viewClicks());
     }
 
     protected abstract P createPresenter();

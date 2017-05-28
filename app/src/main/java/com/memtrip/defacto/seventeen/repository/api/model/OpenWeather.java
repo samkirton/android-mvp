@@ -1,4 +1,4 @@
-package com.memtrip.defacto.seventeen.repository.api;
+package com.memtrip.defacto.seventeen.repository.api.model;
 
 import java.util.List;
 

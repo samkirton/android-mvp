@@ -1,10 +1,8 @@
-package com.memtrip.defacto.seventeen.repository.api;
+package com.memtrip.defacto.seventeen.repository.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
-
-class OpenWeatherMain {
+public class OpenWeatherMain {
     private float temp;
     private float tempMin;
     private float tempMax;

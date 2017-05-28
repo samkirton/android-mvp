@@ -13,7 +13,7 @@ public class Day {
     }
 
     public Day(final long timestamp) {
-        dateTime = Instant.ofEpochMilli(timestamp)
+        dateTime = Instant.ofEpochMilli(timestamp * 1000)
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
     }

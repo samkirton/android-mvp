@@ -1,19 +1,16 @@
 package com.memtrip.defacto.seventeen.system;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import com.memtrip.defacto.seventeen.BuildConfig;
 import com.memtrip.defacto.seventeen.R;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Named;
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -22,7 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
-import retrofit2.*;
+import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @Module
@@ -84,12 +81,17 @@ public class SystemModule {
     }
 
     @Provides
-    public retrofit2.Converter.Factory converterFactory() {
+    public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        return mapper;
+    }
+
+    @Provides
+    public retrofit2.Converter.Factory converterFactory(ObjectMapper mapper) {
         return JacksonConverterFactory.create(mapper);
     }
 

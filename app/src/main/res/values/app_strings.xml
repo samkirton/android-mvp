@@ -6,4 +6,6 @@
     <string name="app_api_key">f3aa91537bf629cf151602cbe241f2fa</string>
     <string name="app_api_location">Dumfries, GB</string>
 
+    <string name="app_button_retry">Retry</string>
+
 </resources>

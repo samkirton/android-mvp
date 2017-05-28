@@ -5,16 +5,18 @@ import java.util.List;
 public class Forecast {
 
     private final List<Weather> weather;
+    private final Weather current;
 
     public List<Weather> weather() {
         return weather;
     }
 
-    public Weather currentHour() {
-        return weather.get(0);
+    public Weather current() {
+        return current;
     }
 
-    public Forecast(List<Weather> weather) {
+    public Forecast(List<Weather> weather, Weather current) {
         this.weather = weather;
+        this.current = current;
     }
 }
