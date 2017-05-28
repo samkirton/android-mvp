@@ -30,6 +30,6 @@ class WeatherForCurrentHour {
             }
         }
 
-        return weatherList.get(0);
+        return weatherList.get(Math.round(weatherList.size() / 2));
     }
 }

@@ -1,23 +1,23 @@
 package com.memtrip.defacto.seventeen.system.entity;
 
 public class Temperature {
-    private final float current;
-    private final float min;
-    private final float max;
+    private final int current;
+    private final int min;
+    private final int max;
 
-    public float current() {
+    public int current() {
         return current;
     }
 
-    public float min() {
+    public int min() {
         return min;
     }
 
-    public float max() {
+    public int max() {
         return max;
     }
 
-    public Temperature(float current, float min, float max) {
+    public Temperature(int current, int min, int max) {
         this.current = current;
         this.min = min;
         this.max = max;

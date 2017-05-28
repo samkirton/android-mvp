@@ -1,22 +1,38 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Weather.TextAppearance.Header" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/app_default_text_color</item>
+        <item name="android:textSize">@dimen/app_text_size_header_48</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Weather.TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+    </style>
+
     <style name="Weather.TextAppearance.Title" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textColor">@color/app_default_text_color</item>
         <item name="android:textSize">@dimen/app_text_size_title_20</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Weather.TextAppearance.Body" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:textColor">@color/app_default_text_color</item>
         <item name="android:textSize">@dimen/app_text_size_body_16</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Weather.TextAppearance.SubTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/app_default_text_color</item>
+        <item name="android:textSize">@dimen/app_text_size_subtitle_12</item>
         <item name="android:textStyle">normal</item>
     </style>
 

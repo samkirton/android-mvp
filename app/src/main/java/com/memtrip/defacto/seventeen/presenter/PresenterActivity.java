@@ -10,7 +10,6 @@ import com.memtrip.defacto.seventeen.presenter.app.ui.Click;
 import com.memtrip.defacto.seventeen.presenter.app.ui.DefaultActivity;
 import com.memtrip.defacto.seventeen.presenter.app.ui.DefaultClick;
 
-import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.functions.Function;

@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "int", "OFFLINE_REQUESTS_DELAY", "1"
     }
 
     buildTypes {
@@ -48,6 +50,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     testCompile 'junit:junit:4.12'
 
     compile 'com.squareup.retrofit2:retrofit:2.3.0'

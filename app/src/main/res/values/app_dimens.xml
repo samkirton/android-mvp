@@ -3,9 +3,14 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="app_text_size_header_48">48sp</dimen>
     <dimen name="app_text_size_title_20">20sp</dimen>
     <dimen name="app_text_size_body_16">16sp</dimen>
+    <dimen name="app_text_size_subtitle_12">12sp</dimen>
 
     <dimen name="app_padding_small_4">4dp</dimen>
+    <dimen name="app_padding_medium_8">8dp</dimen>
+    <dimen name="app_padding_medium_12">12dp</dimen>
+    <dimen name="app_padding_medium_16">16dp</dimen>
 
 </resources>

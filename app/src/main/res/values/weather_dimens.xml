@@ -1,0 +1,5 @@
+<resources>
+
+    <dimen name="forecast_adapter_title_margin_top">48dp</dimen>
+
+</resources>

@@ -1,6 +1,7 @@
 package com.memtrip.defacto.seventeen.repository.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.memtrip.defacto.seventeen.BuildConfig;
 import com.memtrip.defacto.seventeen.repository.api.model.OpenWeatherForecast;
 
 import org.apache.commons.io.IOUtils;
@@ -8,6 +9,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
@@ -33,7 +35,7 @@ class DummyForecastApi implements ForecastApi {
                     observer.onError(e);
                 }
             }
-        };
+        }.delay(BuildConfig.OFFLINE_REQUESTS_DELAY, TimeUnit.SECONDS);
     }
 
     private String fromFile(String fileName) throws IOException {

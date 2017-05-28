@@ -1,8 +1,10 @@
 package com.memtrip.defacto.seventeen.presenter.app.weather;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -21,7 +23,13 @@ import static com.memtrip.defacto.seventeen.presenter.app.weather.WeatherCompone
 public class WeatherActivity extends PresenterActivity<WeatherPresenter, WeatherComponent> implements WeatherView {
 
     @BindView(R.id.weather_activity_progress_bar)
-    ProgressBar progressBar;
+    View progressBar;
+
+    @BindView(R.id.weather_activity_forecast_root)
+    ViewGroup forecastRoot;
+
+    @BindView(R.id.weather_activity_forecast_tab_layout)
+    TabLayout tabLayout;
 
     @BindView(R.id.weather_activity_forecast_view_pager)
     ViewPager viewPager;
@@ -56,7 +64,9 @@ public class WeatherActivity extends PresenterActivity<WeatherPresenter, Weather
 
     @Override
     public void showForecast(List<Forecast> forecasts) {
-        setVisibility(View.VISIBLE, viewPager);
+        setVisibility(View.VISIBLE, forecastRoot);
+        viewPager.setAdapter(new ForecastAdapter(forecasts, this));
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -69,7 +79,7 @@ public class WeatherActivity extends PresenterActivity<WeatherPresenter, Weather
     @Override
     public void startProgress() {
         setVisibility(View.VISIBLE, progressBar);
-        setVisibility(View.GONE, viewPager, errorRootView);
+        setVisibility(View.GONE, forecastRoot, errorRootView);
     }
 
     @Override

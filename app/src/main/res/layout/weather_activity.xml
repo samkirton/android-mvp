@@ -2,23 +2,51 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:background="@color/app_default_background_color">
 
-    <ProgressBar
+    <LinearLayout
         android:id="@+id/weather_activity_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:visibility="gone">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/weather_activity_forecast_view_pager"
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/app_padding_medium_8"/>
+
+        <TextView
+            style="@style/Weather.TextAppearance.Body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_activity_progress_text"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/weather_activity_forecast_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"/>
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.design.widget.TabLayout
+            style="@style/Weather.TabLayout"
+            android:id="@+id/weather_activity_forecast_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_padding_medium_12"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/weather_activity_forecast_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/weather_activity_error_root"

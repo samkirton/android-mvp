@@ -24,9 +24,9 @@ public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
                         getIcon(openWeather.getWeather())
                 ),
                 new Temperature(
-                        openWeather.getMain().getTemp(),
-                        openWeather.getMain().getTempMin(),
-                        openWeather.getMain().getTempMax()
+                        Math.round(openWeather.getMain().getTemp()),
+                        Math.round(openWeather.getMain().getTempMin()),
+                        Math.round(openWeather.getMain().getTempMax())
                 )
         );
     }
