@@ -8,4 +8,6 @@
 
     <string name="weather_activity_progress_text">Fetching weather for Dumfries</string>
 
+    <string name="forecast_adapter_item_celsius">\u00B0</string>
+
 </resources>

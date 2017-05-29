@@ -19,7 +19,7 @@ class UniqueDays {
         Set<Integer> uniqueDays = new LinkedHashSet<>();
 
         for (Weather weather : weatherList) {
-            uniqueDays.add(weather.day().dateTime().getDayOfMonth());
+            uniqueDays.add(weather.day().dayOfMonth());
         }
 
         return uniqueDays;

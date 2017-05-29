@@ -6,10 +6,11 @@ import android.widget.TextView;
 import com.memtrip.defacto.seventeen.R;
 import com.memtrip.defacto.seventeen.system.entity.Forecast;
 
+import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ForecastViewHolder {
+class ForecastViewHolder {
 
     @BindView(R.id.forecast_adapter_item_weather_title)
     TextView weatherDescriptionTitleTextView;
@@ -21,10 +22,13 @@ public class ForecastViewHolder {
     TextView tempTextView;
 
     @BindView(R.id.forecast_adapter_item_temp_min)
-    TextView minTempTextView;
+    TextView lowTempTextView;
 
     @BindView(R.id.forecast_adapter_item_temp_max)
-    TextView maxTempTextView;
+    TextView highTempTextView;
+
+    @BindString(R.string.forecast_adapter_item_celsius)
+    String celsius;
 
     private final View itemView;
 
@@ -38,10 +42,15 @@ public class ForecastViewHolder {
     }
 
     void populate(Forecast forecast) {
+
+        String temp = String.valueOf(forecast.current().temperature().value()) + celsius;
+        String low = String.valueOf(forecast.low().value()) + celsius;
+        String high = String.valueOf(forecast.high().value()) + celsius;
+
         weatherDescriptionTitleTextView.setText(forecast.current().description().title());
         weatherDescriptionBodyTextView.setText(forecast.current().description().body());
-        tempTextView.setText(String.valueOf(forecast.current().temperature().current()));
-        minTempTextView.setText(String.valueOf(forecast.current().temperature().min()));
-        maxTempTextView.setText(String.valueOf(forecast.current().temperature().max()));
+        tempTextView.setText(temp);
+        lowTempTextView.setText(low);
+        highTempTextView.setText(high);
     }
 }

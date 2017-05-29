@@ -10,10 +10,12 @@ import java.util.Set;
 public class ForecastPerDay {
     private final WeatherForDay weatherForDay;
     private final UniqueDays uniqueDays;
+    private final int currentHour;
 
-    public ForecastPerDay(List<Weather> weatherList) {
+    public ForecastPerDay(List<Weather> weatherList, int currentHour) {
         this.uniqueDays = new UniqueDays(weatherList);
         this.weatherForDay = new WeatherForDay(weatherList);
+        this.currentHour = currentHour;
     }
 
     public List<Forecast> find() {
@@ -28,7 +30,9 @@ public class ForecastPerDay {
 
             forecasts.add(new Forecast(
                     weather,
-                    new WeatherForCurrentHour(weather).find()
+                    new WeatherForCurrentHour(weather, currentHour).find(),
+                    new HighForDay(weather).find(),
+                    new LowForDay(weather).find()
             ));
         }
 

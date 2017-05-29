@@ -13,9 +13,11 @@ import java.util.List;
 public class CovertToForecast implements ConvertTo<OpenWeatherForecast, List<Forecast>> {
 
     private final ConvertTo<OpenWeather, Weather> convertToWeather;
+    private final int currentHour;
 
-    public CovertToForecast(ConvertTo<OpenWeather, Weather> convertToWeather) {
+    public CovertToForecast(ConvertTo<OpenWeather, Weather> convertToWeather, ForecastDateMaker forecastDateMaker) {
         this.convertToWeather = convertToWeather;
+        currentHour = forecastDateMaker.forcastDate(System.currentTimeMillis()).currentHour();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class CovertToForecast implements ConvertTo<OpenWeatherForecast, List<For
 
         List<Weather> weatherList = weatherListFromOpenWeatherForecast(openWeatherForecast);
 
-        ForecastPerDay forecastPerDay = new ForecastPerDay(weatherList);
+        ForecastPerDay forecastPerDay = new ForecastPerDay(weatherList, currentHour);
 
         return forecastPerDay.find();
     }

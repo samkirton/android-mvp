@@ -25,7 +25,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 @Module
 public class SystemModule {
 
-    private final Context context;
+    protected final Context context;
 
     public SystemModule(Context context) {
         this.context = context;
@@ -64,6 +64,12 @@ public class SystemModule {
     @Named("apiLocation")
     public String apiLocation() {
         return context.getString(R.string.app_api_location);
+    }
+
+    @Provides
+    @Named("apiUnit")
+    public String apiUnit() {
+        return context.getString(R.string.app_api_units);
     }
 
     @Provides

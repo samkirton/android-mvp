@@ -18,7 +18,7 @@ class WeatherForDay {
         List<Weather> weatherForDay = new ArrayList<>();
 
         for (Weather weather : weatherList) {
-            if (dayOfMonth == weather.day().dateTime().getDayOfMonth()) {
+            if (dayOfMonth == weather.day().dayOfMonth()) {
                 weatherForDay.add(weather);
             }
         }

@@ -9,5 +9,7 @@ import retrofit2.http.Query;
 public interface ForecastApi {
 
     @GET("/data/2.5/forecast/")
-    Single<OpenWeatherForecast> getForecast(@Query("appid") String apiKey, @Query("q") String q);
+    Single<OpenWeatherForecast> getForecast(@Query("appid") String apiKey,
+                                            @Query("q") String q,
+                                            @Query("units") String units);
 }

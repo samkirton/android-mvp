@@ -12,11 +12,22 @@ import java.util.List;
 
 public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
 
+    private final ForecastDateMaker forecastDateMaker;
+
+    public ConvertToWeather(ForecastDateMaker forecastDateMaker) {
+        this.forecastDateMaker = forecastDateMaker;
+    }
+
     @Override
     public Weather from(OpenWeather openWeather) {
+
+        ForecastDate forecastDate = forecastDateMaker.forcastDate(openWeather.getDt() * 1000);
+
         return new Weather(
                 new Day(
-                        openWeather.getDt()
+                        forecastDate.currentHour(),
+                        forecastDate.dayOfMonth(),
+                        forecastDate.month()
                 ),
                 new Description(
                         getMain(openWeather.getWeather()),
@@ -24,9 +35,7 @@ public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
                         getIcon(openWeather.getWeather())
                 ),
                 new Temperature(
-                        Math.round(openWeather.getMain().getTemp()),
-                        Math.round(openWeather.getMain().getTempMin()),
-                        Math.round(openWeather.getMain().getTempMax())
+                        Math.round(openWeather.getMain().getTemp())
                 )
         );
     }

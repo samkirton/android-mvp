@@ -2,9 +2,6 @@ package com.memtrip.defacto.seventeen.system.daily;
 
 import com.memtrip.defacto.seventeen.system.entity.Weather;
 
-import org.threeten.bp.Instant;
-import org.threeten.bp.ZoneId;
-
 import java.util.List;
 
 class WeatherForCurrentHour {
@@ -12,24 +9,21 @@ class WeatherForCurrentHour {
     private final List<Weather> weatherList;
     private final int currentHour;
 
-    WeatherForCurrentHour(List<Weather> weatherList) {
+    WeatherForCurrentHour(List<Weather> weatherList, int currentHour) {
         this.weatherList = weatherList;
-        this.currentHour = Instant.ofEpochMilli(System.currentTimeMillis())
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime()
-                .getHour();
+        this.currentHour = currentHour;
     }
 
     Weather find() {
 
         for (Weather weather : weatherList) {
-            int weatherHour = weather.day().dateTime().getHour();
+            int weatherHour = weather.day().hour();
 
             if (currentHour <= weatherHour) {
                 return weather;
             }
         }
 
-        return weatherList.get(Math.round(weatherList.size() / 2));
+        return weatherList.get(weatherList.size() - 1);
     }
 }
