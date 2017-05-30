@@ -2,8 +2,6 @@ package com.memtrip.defacto.seventeen.system;
 
 import android.content.Context;
 
-import org.mockito.Mock;
-
 import javax.inject.Named;
 
 import dagger.Module;
@@ -14,8 +12,11 @@ import io.reactivex.schedulers.Schedulers;
 @Module
 public class MockSystemModule {
 
-    @Mock
-    Context context;
+    private final Context context;
+
+    public MockSystemModule(Context context) {
+        this.context = context;
+    }
 
     @Provides
     public Context context() {

@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;
 import io.reactivex.annotations.NonNull;
-import retrofit2.http.Query;
 
 class DummyForecastApi implements ForecastApi {
 
@@ -25,7 +24,7 @@ class DummyForecastApi implements ForecastApi {
     }
 
     @Override
-    public Single<OpenWeatherForecast> getForecast(@Query("appid") String apiKey, @Query("q") String q) {
+    public Single<OpenWeatherForecast> getForecast(String apiKey, String q, String units) {
         return new Single<OpenWeatherForecast>() {
             @Override
             protected void subscribeActual(@NonNull SingleObserver<? super OpenWeatherForecast> observer) {

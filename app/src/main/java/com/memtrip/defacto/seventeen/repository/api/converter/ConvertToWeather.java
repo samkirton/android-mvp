@@ -10,6 +10,8 @@ import com.memtrip.defacto.seventeen.system.entity.Weather;
 
 import java.util.List;
 
+import static com.memtrip.defacto.seventeen.repository.api.ForecastApi.ICON_URL;
+
 public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
 
     private final ForecastDateMaker forecastDateMaker;
@@ -32,7 +34,7 @@ public class ConvertToWeather implements ConvertTo<OpenWeather, Weather> {
                 new Description(
                         getMain(openWeather.getWeather()),
                         getDescription(openWeather.getWeather()),
-                        getIcon(openWeather.getWeather())
+                        ICON_URL + getIcon(openWeather.getWeather()) + ".png"
                 ),
                 new Temperature(
                         Math.round(openWeather.getMain().getTemp())

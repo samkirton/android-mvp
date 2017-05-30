@@ -2,6 +2,7 @@ package com.memtrip.defacto.seventeen.presenter.app.ui;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.memtrip.defacto.seventeen.presenter.app.weather.DaggerWeatherComponent;
 import com.memtrip.defacto.seventeen.repository.RepositoryModule;
@@ -16,6 +17,7 @@ public class DefaultApplication extends Application {
         super.onCreate();
 
         AndroidThreeTen.init(this);
+        Fresco.initialize(this);
     }
 
     @Override

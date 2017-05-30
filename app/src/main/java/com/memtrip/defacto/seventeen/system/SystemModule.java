@@ -38,42 +38,42 @@ public class SystemModule {
 
     @Provides
     @Named("mainThreadScheduler")
-    public Scheduler mainThreadScheduler() {
+    Scheduler mainThreadScheduler() {
         return AndroidSchedulers.mainThread();
     }
 
     @Provides
     @Named("backgroundThreadScheduler")
-    public Scheduler backgroundThreadScheduler() {
+    Scheduler backgroundThreadScheduler() {
         return Schedulers.io();
     }
 
     @Provides
     @Named("apiEndpoint")
-    public String apiEndpoint() {
+    String apiEndpoint() {
         return context.getString(R.string.app_api_endpoint);
     }
 
     @Provides
     @Named("apiKey")
-    public String apiKey() {
+    String apiKey() {
         return context.getString(R.string.app_api_key);
     }
 
     @Provides
     @Named("apiLocation")
-    public String apiLocation() {
+    String apiLocation() {
         return context.getString(R.string.app_api_location);
     }
 
     @Provides
     @Named("apiUnit")
-    public String apiUnit() {
+    String apiUnit() {
         return context.getString(R.string.app_api_units);
     }
 
     @Provides
-    public OkHttpClient okHttpClient() {
+    OkHttpClient okHttpClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -87,7 +87,7 @@ public class SystemModule {
     }
 
     @Provides
-    public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
 
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
@@ -97,14 +97,14 @@ public class SystemModule {
     }
 
     @Provides
-    public retrofit2.Converter.Factory converterFactory(ObjectMapper mapper) {
+    retrofit2.Converter.Factory converterFactory(ObjectMapper mapper) {
         return JacksonConverterFactory.create(mapper);
     }
 
     @Provides
-    public Retrofit retrofit(@Named("apiEndpoint") String endpoint,
-                             OkHttpClient client,
-                             retrofit2.Converter.Factory converterFactory) {
+    Retrofit retrofit(@Named("apiEndpoint") String endpoint,
+                      OkHttpClient client,
+                      retrofit2.Converter.Factory converterFactory) {
 
         return new Retrofit.Builder()
                 .baseUrl(endpoint)

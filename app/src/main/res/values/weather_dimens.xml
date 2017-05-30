@@ -1,5 +1,5 @@
 <resources>
 
-    <dimen name="forecast_adapter_title_margin_top">48dp</dimen>
+    <dimen name="forecast_adapter_item_icon_size">48dp</dimen>
 
 </resources>

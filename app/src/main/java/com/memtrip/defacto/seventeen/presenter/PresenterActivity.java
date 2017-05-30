@@ -67,6 +67,7 @@ public abstract class PresenterActivity<P extends Presenter, C extends Presenter
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     protected void registerClicks(final View view) {
         RxView.clicks(view)
                 .flatMap(new Function<Object, ObservableSource<Click>>() {

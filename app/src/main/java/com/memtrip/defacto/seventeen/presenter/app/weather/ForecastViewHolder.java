@@ -1,8 +1,13 @@
 package com.memtrip.defacto.seventeen.presenter.app.weather;
 
+import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
 import com.memtrip.defacto.seventeen.R;
 import com.memtrip.defacto.seventeen.system.entity.Forecast;
 
@@ -11,6 +16,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 class ForecastViewHolder {
+
+    @BindView(R.id.forecast_adapter_item_weather_icon)
+    SimpleDraweeView iconSimpleDraweeView;
 
     @BindView(R.id.forecast_adapter_item_weather_title)
     TextView weatherDescriptionTitleTextView;
@@ -52,5 +60,12 @@ class ForecastViewHolder {
         tempTextView.setText(temp);
         lowTempTextView.setText(low);
         highTempTextView.setText(high);
+
+        DraweeController draweeController = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(ImageRequest.fromUri(Uri.parse(forecast.current().description().icon())))
+                .setOldController(iconSimpleDraweeView.getController())
+                .build();
+
+        iconSimpleDraweeView.setController(draweeController);
     }
 }

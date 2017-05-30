@@ -12,7 +12,7 @@ import dagger.Component;
                 MockRepositoryModule.class
         }
 )
-public interface MockWeatherComponent extends PresenterComponent {
+interface MockWeatherComponent extends PresenterComponent {
 
     void inject(WeatherPresenter weatherPresenter);
 }

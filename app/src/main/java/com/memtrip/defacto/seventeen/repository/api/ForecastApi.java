@@ -8,6 +8,8 @@ import retrofit2.http.Query;
 
 public interface ForecastApi {
 
+    String ICON_URL = "http://openweathermap.org/img/w/";
+
     @GET("/data/2.5/forecast/")
     Single<OpenWeatherForecast> getForecast(@Query("appid") String apiKey,
                                             @Query("q") String q,

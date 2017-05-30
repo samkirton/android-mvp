@@ -17,7 +17,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class WeatherPresenter extends Presenter<WeatherView> {
+class WeatherPresenter extends Presenter<WeatherView> {
 
     @Inject
     @Named("mainThreadScheduler")
@@ -38,7 +38,6 @@ public class WeatherPresenter extends Presenter<WeatherView> {
 
     @Override
     protected void start() {
-
         loadForecast();
     }
 

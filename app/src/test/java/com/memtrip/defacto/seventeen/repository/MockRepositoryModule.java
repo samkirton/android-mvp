@@ -1,6 +1,5 @@
 package com.memtrip.defacto.seventeen.repository;
 
-import com.memtrip.defacto.seventeen.repository.api.ForecastApi;
 import com.memtrip.defacto.seventeen.repository.api.converter.ConvertToWeather;
 import com.memtrip.defacto.seventeen.repository.api.converter.CovertToForecast;
 import com.memtrip.defacto.seventeen.repository.api.converter.ForecastDateMaker;

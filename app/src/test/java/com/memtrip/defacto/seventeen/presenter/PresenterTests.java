@@ -8,14 +8,16 @@ import com.memtrip.defacto.seventeen.system.MockSystemModule;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.Mockito.when;
+
 public class PresenterTests<P extends Presenter> {
 
     @Mock
-    Context context;
+    protected Context context;
 
-    protected MockSystemModule mockSystemModule;
+    protected MockSystemModule systemMock;
 
-    protected MockRepositoryModule mockRepositoryModule;
+    protected MockRepositoryModule repositoryMock;
 
     protected P presenter;
 
@@ -23,10 +25,14 @@ public class PresenterTests<P extends Presenter> {
 
         MockitoAnnotations.initMocks(this);
 
-        mockSystemModule = new MockSystemModule();
-        MockitoAnnotations.initMocks(mockSystemModule);
+        systemMock = new MockSystemModule(context);
+        MockitoAnnotations.initMocks(systemMock);
 
-        mockRepositoryModule = new MockRepositoryModule();
-        MockitoAnnotations.initMocks(mockRepositoryModule);
+        repositoryMock = new MockRepositoryModule();
+        MockitoAnnotations.initMocks(repositoryMock);
+    }
+
+    protected void init(PresenterView view) {
+        when(view.context()).thenReturn(context);
     }
 }

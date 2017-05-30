@@ -34,13 +34,28 @@ android {
 
     productFlavors {
 
-        online {
-            applicationId "com.memtrip.defacto.seventeen"
-        }
-
         offline {
             applicationId "com.memtrip.defacto.seventeen.offline"
         }
+
+        online {
+            applicationId "com.memtrip.defacto.seventeen.online"
+        }
+
+        prod {
+            applicationId "com.memtrip.defacto.seventeen"
+        }
+    }
+
+    sourceSets {
+        offline.java.srcDirs += 'src/offline/java'
+        online.java.srcDirs += 'src/online/java'
+        prod.java.srcDirs += 'src/online/java'
+    }
+
+    android.applicationVariants.all {
+        def aptOutputDir = new File(buildDir, "generated/source/apt/${it.unitTestVariant.dirName}")
+        it.unitTestVariant.addJavaSourceFoldersToModel(aptOutputDir)
     }
 }
 
@@ -66,6 +81,8 @@ dependencies {
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+
+    compile 'com.facebook.fresco:fresco:1.3.0'
 
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'

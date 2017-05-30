@@ -2,26 +2,21 @@ package com.memtrip.defacto.seventeen.presenter.app.weather;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.memtrip.defacto.seventeen.R;
 import com.memtrip.defacto.seventeen.system.entity.Forecast;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class ForecastAdapter extends PagerAdapter {
+class ForecastAdapter extends PagerAdapter {
 
     private final List<Forecast> forecasts;
     private final LayoutInflater inflater;
 
-    public ForecastAdapter(List<Forecast> forecasts, Context context) {
+    ForecastAdapter(List<Forecast> forecasts, Context context) {
         this.forecasts = forecasts;
         this.inflater = LayoutInflater.from(context);
     }
